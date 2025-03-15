@@ -2,9 +2,10 @@ import axios from "axios";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 // Lấy danh sách stories
+// Lấy danh sách stories
 export const fetchStories = async () => {
   try {
-    const response = await axios.get(API_BASE_URL);
+    const response = await axios.get(`${API_BASE_URL}/api/stories`); // Đảm bảo đường dẫn có '/api/stories'
     return response.data;
   } catch (error) {
     console.error("Lỗi khi lấy stories:", error);
@@ -15,7 +16,7 @@ export const fetchStories = async () => {
 // Đăng story mới
 export const createStory = async (formData) => {
     try {
-      const response = await axios.post(API_BASE_URL, formData, {
+      const response = await axios.post(`${API_BASE_URL}/api/stories/`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;

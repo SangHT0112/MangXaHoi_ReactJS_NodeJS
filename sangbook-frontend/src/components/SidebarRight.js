@@ -56,7 +56,7 @@ function SidebarRight() {
     const fetchGroups = async () => {
       if (user.id) {
         try {
-          const response = await fetch(`${API_BASE_URL}api/groups/user/${user.id}`);
+          const response = await fetch(`${API_BASE_URL}/api/groups/user/${user.id}`);
           const data = await response.json();
           setGroups(data);
         } catch (error) {
@@ -154,7 +154,7 @@ function SidebarRight() {
   const fetchMessages = async (groupId) => {
     try {
       scrollToBottom();
-      const response = await fetch(`${API_BASE_URL}api/groups/${groupId}/messages`);
+      const response = await fetch(`${API_BASE_URL}/api/groups/${groupId}/messages`);
       const data = await response.json();
       setMessages(data);
     } catch (error) {
@@ -195,7 +195,7 @@ function SidebarRight() {
                 key={friend.id}
               >
                 <img
-                  src={friend.avatar ? `${API_BASE_URL}${friend.avatar}` : "/default-avatar.jpg"}
+                  src={friend.avatar ? `${API_BASE_URL}/${friend.avatar}` : "/default-avatar.jpg"}
                   alt="Avatar"
                   className="img-avt"
                 />
@@ -234,7 +234,7 @@ function SidebarRight() {
       {isGroupChatOpen && selectedGroup && (
         <div className="message-chat">
           <div className="message-chat-header p-2">
-            <img src={`${API_BASE_URL}${selectedGroup.avatar}`} alt="Avatar" className="img-avt" />
+            <img src={`${API_BASE_URL}/${selectedGroup.avatar}`} alt="Avatar" className="img-avt" />
             <span>{selectedGroup.name}</span>
             <button onClick={() => setIsGroupChatOpen(false)}>X</button>
           </div>
@@ -309,7 +309,7 @@ function SidebarRight() {
                         onChange={() => handleFriendSelect(friend.id)}
                       />
                       <img
-                        src={friend.avatar ? `${API_BASE_URL}${friend.avatar}` : "/default-avatar.jpg"}
+                        src={friend.avatar ? `${API_BASE_URL}/${friend.avatar}` : "/default-avatar.jpg"}
                         alt="Avatar"
                         className="img-avt"
                       />

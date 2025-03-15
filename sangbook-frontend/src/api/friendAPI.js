@@ -4,7 +4,7 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const sendFriendRequest = async (send_id, receive_id) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/send-request`, { send_id, receive_id });
+    const response = await axios.post(`${API_BASE_URL}/api/friends/send-request`, { send_id, receive_id });
     return response.data;
   } catch (error) {
     console.error("Lỗi gửi kết bạn:", error);
@@ -14,7 +14,7 @@ export const sendFriendRequest = async (send_id, receive_id) => {
 
 export const checkFriendStatus = async (user1, user2) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/check-status/${user1}/${user2}`);
+    const response = await axios.get(`${API_BASE_URL}/api/friends/check-status/${user1}/${user2}`);
     return response.data;
   } catch (error) {
     console.error("Lỗi kiểm tra trạng thái bạn bè:", error);
@@ -25,7 +25,7 @@ export const checkFriendStatus = async (user1, user2) => {
 
 export const getAcceptedFriends = async (userId) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/accepted/${userId}`);
+        const response = await axios.get(`${API_BASE_URL}/api/friends/accepted/${userId}`);
         return response.data.friends;
     } catch (error) {
         console.error("Lỗi lấy danh sách bạn bè:", error);
