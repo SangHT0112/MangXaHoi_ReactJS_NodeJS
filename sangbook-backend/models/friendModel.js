@@ -46,3 +46,19 @@ export const getAcceptedFriends = async (userId) => {
     return rows;
 };
 
+
+export const getSuggestedFriends = async (userId) => {
+    const [rows] = await db.execute(
+        `SELECT u.id, u.username, u.avatar
+         FROM users u
+         WHERE u.id != ?
+         AND u.id NOT IN (
+             SELECT send_id FROM friends WHERE receive_id = ? AND status = 'accepted'
+             UNION
+             SELECT receive_id FROM friends WHERE send_id = ? AND status = 'accepted'
+         )
+         LIMIT 20`, // Giới hạn 10 gợi ý
+        [userId, userId, userId]
+    );
+    return rows;
+};

@@ -38,7 +38,7 @@ export default function Register() {
     }
   
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/auth/`, formDataObj, {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/register`, formDataObj, {
         headers: { "Content-Type": "multipart/form-data" }
       });
   

@@ -17,7 +17,6 @@ const Story = ({ stories, setStories }) => { // Nhận stories & setStories từ
   const [preview, setPreview] = useState("");
   const storyListRef = useRef(null);
   const user = JSON.parse(localStorage.getItem("user")) || {};
-  const API_BASE_URL = "http://localhost:4000/";
 
 
   const scrollLeft = () => {
@@ -75,9 +74,9 @@ const Story = ({ stories, setStories }) => { // Nhận stories & setStories từ
   
       setStories((prevStories) => [{ 
         ...newStory, 
-        image: newStory.image ? `${API_BASE_URL}${newStory.image}` : null, 
-        video: newStory.video ? `${API_BASE_URL}${newStory.video}` : null,
-        avatar: newStory.avatar ? `${API_BASE_URL}${newStory.avatar}` : "default-avatar.png",
+        image: newStory.image ? `${API_BASE_URL}/${newStory.image}` : null, 
+        video: newStory.video ? `${API_BASE_URL}/${newStory.video}` : null,
+        avatar: newStory.avatar ? `${API_BASE_URL}/${newStory.avatar}` : "default-avatar.png",
       }, ...prevStories]);
       
       setShowModal(false);
@@ -160,16 +159,16 @@ const Story = ({ stories, setStories }) => { // Nhận stories & setStories từ
           story ? (
             <div key={story.id} className="story-item" onClick={() => handleStoryClick(story)}>
               {story.video ? (
-                <video src={`${API_BASE_URL}${story.video}`} className="story-thumbnail" muted loop />
+                <video src={`${API_BASE_URL}/${story.video}`} className="story-thumbnail" muted loop />
               ) : story.image ? (
-                <img src={`${API_BASE_URL}${story.image}`} alt={story.username} className="story-thumbnail" />
+                <img src={`${API_BASE_URL}/${story.image}`} alt={story.username} className="story-thumbnail" />
               ) : (
                 <div className="story-thumbnail">No media available</div>
               )}
               
               <div className="story-info">
                 <img
-                  src={story.avatar?.startsWith("http") ? story.avatar : `${API_BASE_URL}${story.avatar || "default-avatar.png"}`}
+                  src={story.avatar?.startsWith("http") ? story.avatar : `${API_BASE_URL}/${story.avatar || "default-avatar.png"}`}
                   alt={story.username || "Unknown User"}
                   className="story-avatar"
                 />
@@ -213,15 +212,15 @@ const Story = ({ stories, setStories }) => { // Nhận stories & setStories từ
           <div className="story-content" onClick={() => setSelectedStory(null)}>
             <span className="post-time">Đã đăng {dayjs(selectedStory.created_at).fromNow()}</span>
             {selectedStory.video ? (
-              <video src={`${API_BASE_URL}${selectedStory.video}`} controls autoPlay className="story-media" />
+              <video src={`${API_BASE_URL}/${selectedStory.video}`} controls autoPlay className="story-media" />
             ) : (
-              <img src={`${API_BASE_URL}${selectedStory.image}`} alt="Story" className="story-media" />
+              <img src={`${API_BASE_URL}/${selectedStory.image}`} alt="Story" className="story-media" />
             )}
             <div className="story-interact">
                   <p className="story-views">Lượt xem: {selectedStory.views || 0}</p>
               </div>
             <div className="d-flex mt-3">
-              <img src={`${API_BASE_URL}${selectedStory.avatar}`} className="img-avt"/>
+              <img src={`${API_BASE_URL}/${selectedStory.avatar}`} className="img-avt"/>
               <p>{selectedStory.username}</p>
             </div>
           </div>

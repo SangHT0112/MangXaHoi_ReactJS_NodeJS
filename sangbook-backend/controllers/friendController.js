@@ -101,3 +101,17 @@ export const getAcceptedFriends = async (req, res) => {
         res.status(500).json({ success: false, message: "Lỗi server" });
     }
 };
+
+
+
+//Các user chưa kết bạn
+export const getSuggestedFriends = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const suggestedFriends = await FriendModel.getSuggestedFriends(userId);
+        res.json({ success: true, suggestedFriends });
+    } catch (error) {
+        console.error("Lỗi lấy danh sách gợi ý kết bạn:", error);
+        res.status(500).json({ success: false, message: "Lỗi server" });
+    }
+};

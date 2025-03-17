@@ -41,6 +41,6 @@ export const deleteStory = async (storyId) => {
 
 //Tăng lượt xem story
 export const incrementViews = async (storyId) => {
-  return axios.put(`http://localhost:4000/api/story/view/${storyId}`);
+  return axios.put(`${API_BASE_URL}/api/story/view/${storyId}`);
 };
 

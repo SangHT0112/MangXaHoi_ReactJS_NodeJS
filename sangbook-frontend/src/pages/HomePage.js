@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import Sidebar from "../components/Sidebar";
 import SidebarRight from "../components/SidebarRight";
 import PostInput from "../components/PostInput";
@@ -12,18 +12,12 @@ function HomePage() {
   const [posts, setPosts] = useState([]);
   const [stories, setStories] = useState([]);
 
-  const filterStories = (stories) => {
-    const now = new Date();
-    return stories.filter(story => {
-      const storyTime = new Date(story.created_at);
-      return (now - storyTime) < 24 * 60 * 60 * 1000; // 24 giờ
-    });
-  };
+
    // Lấy danh sách stories
    const fetchAllStories = async () => {
     try {
       const data = await fetchStories();
-      setStories(filterStories(Array.isArray(data) ? data : [])); // Lọc stories trước khi setState
+      setStories((Array.isArray(data) ? data : [])); // Lọc stories trước khi setState
     } catch (error) {
       console.error("Lỗi khi lấy stories:", error);
     }

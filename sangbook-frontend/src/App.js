@@ -5,6 +5,8 @@ import Register from "./pages/Register";
 import HomePage from "./pages/HomePage";
 import VideoPage from "./pages/VideoPage";
 import ProfilePage from "./pages/ProfilePage";
+import AddFriendPage from "./pages/AddFriendPage";
+import GroupPage from "./pages/GroupPage";
 import "./App.css";
 
 //ADMIN
@@ -32,10 +34,13 @@ function App() {
         <Route path="/admin/menus" element={<AdminLayout title="Quản lý Menu danh mục"><   SidebarManagement />  </AdminLayout>} />
         <Route path="/admin/reactions" element={<AdminLayout title="Quản lý Menu lượt tương tác"><   ReactionManagement />  </AdminLayout>} />
 
+
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/groups" element={<GroupPage />} />
         <Route path="/videos" element={<VideoPage />} />
+        <Route path="/add-friend" element={<AddFriendPage />} />
         <Route path="/profile/:id" element={<ProfilePage/>} />
       </Routes>
     </Router>

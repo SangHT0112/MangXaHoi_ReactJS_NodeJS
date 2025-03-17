@@ -2,7 +2,7 @@ import db from "../db.js"; // Kết nối với MySQL
 import fs from "fs";
 import path from "path";
 // Lấy tất cả bài viết
-export const getAllPosts = async (user_id) => {
+export const getAllPosts = async (user_id) => {   //user_id để lấy tương tác bài viếtviết
   const [rows] = await db.query(
     `SELECT 
       Posts.*,

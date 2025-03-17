@@ -47,7 +47,7 @@
 /* Danh sách tin nhắn */
 .chat-list {
     padding: 10px;
-    max-height: 300px;
+    max-height: 240px;
     overflow-y: auto;
 }
 
