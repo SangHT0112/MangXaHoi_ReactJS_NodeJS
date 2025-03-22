@@ -7,7 +7,7 @@ import db from "./db.js"; // ✅ Kết nối MySQL
 import http from "http";
 import { Server } from "socket.io";
 import { saveMessage } from "./models/messageModel.js"; // ✅ Lưu tin nhắn vào MySQL
-import { sendMessage } from "./models/groupModels.js"; // ✅ Lưu tin nhắn nhóm
+import { sendMessage } from "./models/groupChatModels.js"; // ✅ Lưu tin nhắn nhóm
 
 // 🔥 Import routes
 import postRoutes from "./routes/postRoutes.js";
@@ -18,8 +18,8 @@ import sidebarRoutes from "./routes/sidebarRoutes.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import friendRoutes from "./routes/friendRoutes.js";
 import storyRoutes from "./routes/storyRoutes.js";
+import groupChatRoutes from "./routes/groupChatRoutes.js";
 import groupRoutes from "./routes/groupRoutes.js";
-
 dotenv.config();
 const app = express();
 const server = http.createServer(app); // Tạo HTTP Server
@@ -55,8 +55,8 @@ app.use("/api/sidebar", sidebarRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/friends", friendRoutes);
 app.use("/api/stories", storyRoutes);
+app.use("/api/group-chats", groupChatRoutes);
 app.use("/api/groups", groupRoutes);
-
 // ✅ Lưu trữ socket ID của user
 let onlineUsers = {}; // Lưu danh sách user online
 

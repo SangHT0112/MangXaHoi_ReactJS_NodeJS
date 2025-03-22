@@ -56,7 +56,7 @@ function SidebarRight() {
     const fetchGroups = async () => {
       if (user.id) {
         try {
-          const response = await fetch(`${API_BASE_URL}/api/groups/user/${user.id}`);
+          const response = await fetch(`${API_BASE_URL}/api/group-chats/user/${user.id}`);
           const data = await response.json();
           setGroups(data);
         } catch (error) {
@@ -106,7 +106,7 @@ function SidebarRight() {
       if (avatar) formData.append("avatar", avatar);
       selectedFriends.forEach((friend) => formData.append("members[]", friend));
 
-      const response = await fetch(`${API_BASE_URL}/api/groups/create`, {
+      const response = await fetch(`${API_BASE_URL}/api/group-chats/create`, {
         method: "POST",
         body: formData, // Dùng FormData để gửi file
       });
@@ -154,7 +154,7 @@ function SidebarRight() {
   const fetchMessages = async (groupId) => {
     try {
       scrollToBottom();
-      const response = await fetch(`${API_BASE_URL}/api/groups/${groupId}/messages`);
+      const response = await fetch(`${API_BASE_URL}/api/group-chats/${groupId}/messages`);
       const data = await response.json();
       setMessages(data);
     } catch (error) {

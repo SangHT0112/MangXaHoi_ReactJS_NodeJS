@@ -9,6 +9,7 @@ const db = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   connectionLimit: 10,
+  charset: "utf8mb4",  // Thêm dòng này
 });
 
 export default db;

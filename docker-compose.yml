@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  backend:
+    build: ./sangbook-backend
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./sangbook-backend/.env
+    depends_on:
+      - db
+
+  frontend:
+    build: ./sangbook-frontend
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: sang123
+      MYSQL_DATABASE: mangxahoireact
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_unicode_ci
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql  # Gắn volume để lưu dữ liệu vĩnh viễn
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf 
+
+volumes:
+  mysql_data:  # Khai báo volume cho MySQL

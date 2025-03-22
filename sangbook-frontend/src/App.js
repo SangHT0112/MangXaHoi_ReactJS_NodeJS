@@ -7,6 +7,7 @@ import VideoPage from "./pages/VideoPage";
 import ProfilePage from "./pages/ProfilePage";
 import AddFriendPage from "./pages/AddFriendPage";
 import GroupPage from "./pages/GroupPage";
+import GroupDetailPage from "./pages/GroupDetailPage";
 import "./App.css";
 
 //ADMIN
@@ -42,6 +43,7 @@ function App() {
         <Route path="/videos" element={<VideoPage />} />
         <Route path="/add-friend" element={<AddFriendPage />} />
         <Route path="/profile/:id" element={<ProfilePage/>} />
+        <Route path="/groups/:id" element={<GroupDetailPage />} />
       </Routes>
     </Router>
   );

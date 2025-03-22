@@ -1,27 +1,29 @@
 import express from "express";
-import { createGroupController, addMemberController, sendMessageController, getGroupMessagesController, getUserGroupsController } from "../controllers/groupController.js";
 import multer from "multer";
 import path from "path";
+import { createNewGroup, getGroupsByUser,getGroupDetail,getMembers  } from "../controllers/groupController.js";
 
-// Cấu hình lưu trữ file
+const router = express.Router();
+
+// Cấu hình lưu ảnh nhóm
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/groups/"); // Thư mục lưu ảnh nhóm
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
+    destination: "uploads/groups/",
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    },
 });
 
 const upload = multer({ storage });
-const router = express.Router();
 
-router.post("/create", upload.single("avatar"), createGroupController);
-router.post("/add-member", addMemberController);
-router.post("/send-message", sendMessageController);
-router.get("/:group_id/messages", getGroupMessagesController);
+// Routes
+router.post("/create", upload.single("avatar"), createNewGroup);
+router.get("/user/:userId", getGroupsByUser);
 
-router.get("/user/:user_id", getUserGroupsController);
+//Lấy thông tin của group
+router.get("/:groupId", getGroupDetail);
+
+// API lấy danh sách thành viên nhóm
+router.get("/:groupId/members", getMembers);
 
 
 export default router;

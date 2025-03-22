@@ -35,7 +35,7 @@ export const login = async (req, res) => {
 
   try {
     // Kiểm tra người dùng có tồn tại không
-    const [users] = await db.execute("SELECT * FROM Users WHERE email = ?", [email]);
+    const [users] = await db.execute("SELECT * FROM users WHERE email = ?", [email]);
     if (users.length === 0) {
       return res.status(400).json({ success: false, message: "Email hoặc mật khẩu không đúng!" });
     }

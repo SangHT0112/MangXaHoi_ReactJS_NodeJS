@@ -17,3 +17,8 @@ export const getPostsByUser = async (userId) => {
   return response.json();
 };
 
+
+
+//GROUP POST
+
+
